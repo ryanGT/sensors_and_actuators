@@ -17,9 +17,15 @@ pi.set_mode(led_pin, pigpio.OUTPUT)
 pi.set_PWM_frequency(led_pin, 1000)#1000 Hz or 1kHz
 pi.set_PWM_range(led_pin, 100)#range will go from 0-100
 
-
+# fade in
 for i in range(11):
     #i will go from 0-10
+    pi.set_PWM_dutycycle(led_pin,i*10)
+    time.sleep(0.5)
+
+# fade out
+for i in range(10,-1,-1):
+    #i will go through the list [10,9,8,...,0]
     pi.set_PWM_dutycycle(led_pin,i*10)
     time.sleep(0.5)
 
